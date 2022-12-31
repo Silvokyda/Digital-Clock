@@ -1,17 +1,22 @@
-from tkinter import *
-from tkinter.ttk import *
-from time import strftime
+import tkinter as tk
+import time
 
-root = Tk()
-root.title('Digital Clock')
+# Create the main window
+window = tk.Tk()
+window.title("Digital Clock")
 
-label = Label(root, font = ('aerial', 30), background ='blue', foreground ='red')
+# Create a label to display the time
+time_label = tk.Label(window, font=("Helvetica", 60))
+time_label.pack()
 
-def time():
-	string = strftime('%H:%M:%S')
-	label.config(text=string)
-	label.after(1, time)
+# Function to update the time display
+def update_time():
+    current_time = time.strftime("%I:%M:%S %p")
+    time_label.configure(text=current_time)
+    window.after(1000, update_time)
 
-label.pack(anchor ='center')
+# Call the update_time function to start the clock
+update_time()
 
-time()
+# Run the main loop
+window.mainloop()
